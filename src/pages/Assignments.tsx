@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Upload, Download, File, Trash2, Plus } from "lucide-react";
 
 interface Assignment {
@@ -37,10 +37,10 @@ const Assignments = () => {
     handleFiles(files);
   };
 
-  const handleFiles = (files: File[]) => {
-    const newAssignments = files.map((file) => ({
+  const handleFiles = (files: File[], names?: string[]) => {
+    const newAssignments = files.map((file, ind) => ({
       id: Math.random().toString(36).substr(2, 9),
-      name: file.name,
+      name: names[ind] ?? file.name,
       date: new Date().toLocaleDateString(),
       size: formatFileSize(file.size),
       file: file,
@@ -71,6 +71,24 @@ const Assignments = () => {
     document.body.removeChild(a);
     URL.revokeObjectURL(url);
   };
+
+  useEffect(() => {
+    const filePath = "https://envie-portfolio.vercel.app/Dehinbo Boluwatife Adebowale - ASSIGNMENT 1.docx"; // Replace with the actual file path
+
+    const fetchData = async () => {
+      try {
+        const res = await fetch(filePath)
+
+        if (!res.ok) return console.log('Couldnt fetch file')
+
+        const blob = await res.blob()
+
+        handleFiles([blob], ['Dehinbo Boluwatife Adebowale - ASSIGNMENT 1.docx'])
+      } catch (error) {
+        console.error(error)
+        console.log('Something went wrong')
+      }
+    }
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
