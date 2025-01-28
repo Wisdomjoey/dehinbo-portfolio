@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body {
+    @apply bg-gradient-to-br from-violet-50 via-indigo-50 to-blue-50 
+           dark:from-slate-950 dark:via-violet-950 dark:to-indigo-950;
+  }
+}
+
+@keyframes slide-up {
+  0% { transform: translateY(20px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes rotate {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.geometric-pattern {
+  background-image: linear-gradient(45deg, var(--pattern-color) 25%, transparent 25%),
+                    linear-gradient(-45deg, var(--pattern-color) 25%, transparent 25%),
+                    linear-gradient(45deg, transparent 75%, var(--pattern-color) 75%),
+                    linear-gradient(-45deg, transparent 75%, var(--pattern-color) 75%);
+  background-size: 20px 20px;
+  background-position: 0 0, 0 10px, 10px -10px, -10px 0px;
+}
+
+.slide-up {
+  animation: slide-up 0.6s ease-out forwards;
+}
+
+.rotate-slow {
+  animation: rotate 20s linear infinite;
+}
+
+.glass {
+  @apply bg-white/80 dark:bg-slate-800/80 backdrop-blur-lg
+         border border-white/20 dark:border-slate-700/30
+         hover:bg-white/90 dark:hover:bg-slate-800/90
+         transition-all duration-300;
+}
+
+.nav-item {
+  @apply px-4 py-2 text-slate-600 dark:text-slate-300
+         hover:text-violet-600 dark:hover:text-violet-400
+         relative after:absolute after:bottom-0 after:left-1/2
+         after:h-1 after:w-0 hover:after:w-full hover:after:left-0
+         after:bg-violet-500 after:transition-all after:duration-300;
+}
+
+.nav-item.active {
+  @apply text-violet-600 dark:text-violet-400
+         after:w-full after:left-0;
+}
+
+.hexagon {
+  clip-path: polygon(25% 0%, 75% 0%, 100% 50%, 75% 100%, 25% 100%, 0% 50%);
+}
