@@ -74,7 +74,7 @@ const Assignments = () => {
 
   useEffect(() => {
     const filePath =
-      "https://envie-portfolio.vercel.app/Dehinbo Boluwatife Adebowale - ASSIGNMENT 1.docx"; // Replace with the actual file path
+      "https://dehinbo-portfolio.vercel.app/Dehinbo Boluwatife Adebowale - ASSIGNMENT 1.docx"; // Replace with the actual file path
 
     const fetchData = async () => {
       try {
@@ -97,7 +97,7 @@ const Assignments = () => {
     };
 
     fetchData();
-  });
+  }, []);
 
   return (
     <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
